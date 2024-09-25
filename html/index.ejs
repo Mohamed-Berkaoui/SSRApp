@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./parts/navbar.ejs') %>
+    <div class="container">
+      <% for( let i = 0; i < tasks.length; i++ ) { %>
+      <div class="box">
+<a href="/changename/<%= tasks[i].id %>"><h2><%= tasks[i].task %></h2></a>
+        <p><%= tasks[i].completed==true?"done":"not done" %></p>
+        <form action="/update" method="post">
+          <input type="hidden" name="id" value="<%= tasks[i].id %>" />
+          <button type="submit">switch status</button>
+        </form>
+        <form action="/delete/<%= tasks[i].id %>" method="post">
+       
+          <button type="submit">delete</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
